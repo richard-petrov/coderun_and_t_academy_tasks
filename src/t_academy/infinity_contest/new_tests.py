@@ -2,22 +2,25 @@ import sys
 
 
 def main():
-    n, m = map(int, sys.stdin.readline().split())
+    L, R = map(int, sys.stdin.readline().split())
     
-    list_list = []
+    count = 0
 
-    for i in range(1, 10):
+    for digit in range(1, 10):
+        current_num = digit
+
         while True:
             
-            if i > m:
+            if L <= current_num <= R:
+                count += 1
+            if current_num > R:
                 break
-            list_list.append(i)
-            i = int(str(i) + str(i))
-            print(i)
+            if R // 10 < current_num:
+                break
 
-    list_list = [i for i in list_list if i >= n]
+            current_num = current_num * 10 + digit
 
-    print(len(list_list))
+    print(count)
     
 
 if __name__ == '__main__':
